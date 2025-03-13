@@ -9,6 +9,10 @@ public class Gravity : MonoBehaviour
     const float G = 0.00667f;
     public static List<Gravity> gravityobjectlist;
 
+    //orbit
+    [SerializeField] bool planets = false;
+    [SerializeField] int orbitSpeed = 1000;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -18,7 +22,14 @@ public class Gravity : MonoBehaviour
             gravityobjectlist = new List<Gravity>();
         }
          gravityobjectlist.Add(this);
+
+        //orbit
+        if (!planets)
+        {
+            rb.AddForce(Vector3.left * orbitSpeed);
         }
+
+    }
 
 
         private void FixedUpdate()
